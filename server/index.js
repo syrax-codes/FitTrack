@@ -16,7 +16,7 @@ app.use(express.json());
 
 // --- NEW: MongoDB Connection ---
 // 1. Get your connection string from Atlas
-const db_uri = 'mongodb+srv://syrax:dracarys7799@fittrackcluster.vzgx5hx.mongodb.net/?appName=FitTrackCluster';
+const db_uri = 'mongodb+srv://testuser:testpassword123@fittrackcluster.vzgx5hx.mongodb.net/?appName=FitTrackCluster';
 
 mongoose.connect(db_uri)
   .then(() => console.log("MongoDB connection established successfully"))
