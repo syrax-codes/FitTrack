@@ -1,0 +1,19 @@
+# This file tells Git which files and folders to ignore.
+
+# Dependencies
+# Ignores all 'node_modules' folders in the project
+# (both in 'client/' and 'server/')
+**/node_modules
+
+# Vite - Frontend build output and cache
+client/dist
+.vite/
+
+# Environment variables
+# Ignores files that hold secret keys and database passwords
+.env
+.env.*
+
+# Operating System files
+# Ignores macOS system files
+.DS_Store
