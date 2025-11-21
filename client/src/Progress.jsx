@@ -33,7 +33,6 @@ function Progress() {
     fetchAllData();
   }, []);
 
-  // --- NEW: Reset Function ---
   const handleReset = async () => {
     const userId = localStorage.getItem('userId');
     if (!userId) return; // Not logged in
@@ -47,7 +46,7 @@ function Progress() {
         const data = await res.json();
 
         if (res.ok) {
-          // Clear the data from the page
+          
           setWorkouts([]);
           setDiets([]);
           setMessage(data.message); // Show success message
@@ -59,13 +58,11 @@ function Progress() {
       }
     }
   };
-  // --- End of New Function ---
 
   if (loading) {
     return <p>Loading your progress...</p>;
   }
 
-  // Check if user is logged out
   if (!localStorage.getItem('userId')) {
     return <h2>Please log in to see your progress.</h2>;
   }
@@ -74,13 +71,10 @@ function Progress() {
     <div>
       <h2>Your Progress</h2>
       <p>Here's a summary of your logged workouts and meals.</p>
-
-      {/* --- NEW: Reset Button --- */}
       <button onClick={handleReset} className="danger" style={{ marginBottom: '20px' }}>
         Reset All My Progress
       </button>
       {message && <p style={{ color: 'green' }}>{message}</p>}
-      {/* --- End of New Button --- */}
 
       <div style={{ display: 'flex', justifyContent: 'space-around', gap: '20px' }}>
         <div>

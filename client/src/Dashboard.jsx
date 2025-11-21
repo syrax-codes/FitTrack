@@ -26,7 +26,7 @@ function Dashboard() {
   );
 }
 
-// Simple styles for the "cards"
+
 const styles = {
   card: {
     border: '1px solid #ccc',

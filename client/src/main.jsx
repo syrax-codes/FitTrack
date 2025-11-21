@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import './index.css'; // This imports all our new CSS
+import './index.css'; 
 
 // Import all our page components
 import App from './App.jsx';
@@ -16,17 +16,17 @@ import Contact from './Contact.jsx';
 import Team from './Team.jsx';
 import Feedback from './Feedback.jsx';
 
-// This is our simple navigation bar
+
 function Navigation() {
-  const userEmail = localStorage.getItem('userEmail'); // Check if user is logged in
+  const userEmail = localStorage.getItem('userEmail'); 
 
   const handleLogout = () => {
-    localStorage.clear(); // Clear all user info
-    window.location.href = '/login'; // Redirect to login page
+    localStorage.clear(); 
+    window.location.href = '/login'; 
   };
 
   return (
-    // The 'style' prop is gone, our CSS file handles this now
+    
     <nav> 
       <Link to="/">Home</Link>
       <Link to="/dashboard">Dashboard</Link>
@@ -35,16 +35,13 @@ function Navigation() {
       <Link to="/progress">Progress</Link>
       <Link to="/about">About Us</Link>
       <Link to="/team">Team</Link>
-      {/* --- ADDED THESE LINKS --- */}
       <Link to="/contact">Contact Us</Link>
       <Link to="/feedback">Feedback</Link>
 
-      {/* This div is now styled by index.css */}
       <div>
         {userEmail ? (
           <>
             <span>Welcome, {userEmail}!</span>
-            {/* Added className="danger" for styling */}
             <button onClick={handleLogout} className="danger">Logout</button>
           </>
         ) : (
@@ -55,15 +52,15 @@ function Navigation() {
   );
 }
 
-// Render the application
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <Navigation />
-      {/* This div adds padding and centers our content */}
+      
       <div className="page-container">
         <Routes>
-          {/* All your routes are correct */}
+          
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<App />} />
           <Route path="/dashboard" element={<Dashboard />} />

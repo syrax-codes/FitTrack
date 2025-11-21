@@ -1,7 +1,7 @@
 // server/index.js
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose'); // <-- NEW
+const mongoose = require('mongoose'); 
 
 const Workout = require('./models/Workout');
 const Diet = require('./models/Diet');
@@ -14,31 +14,31 @@ const port = 5000;
 app.use(cors());
 app.use(express.json());
 
-// --- NEW: MongoDB Connection ---
-// 1. Get your connection string from Atlas
+// MongoDB Connection ---
+// Get your connection string from Atlas
 const db_uri = 'mongodb+srv://testuser:testpassword123@fittrackcluster.vzgx5hx.mongodb.net/?appName=FitTrackCluster';
 
 mongoose.connect(db_uri)
   .then(() => console.log("MongoDB connection established successfully"))
   .catch(err => console.log("MongoDB connection error: ", err));
-// --- End of NEW ---
 
-// "Hello World" route
+
+
 app.get('/api', (req, res) => {
   res.json({ message: "Hello from the FitTrack server!" });
 });
 
-// --- NEW: API Route for Logging Workout ---
+// API Route for Logging Workout ---
 app.post('/api/log-workout', async (req, res) => {
   try {
-    // We now get userId from the request body
+    // get userId from the request body
     const { exerciseType, duration, calories, userId } = req.body; 
 
     const newWorkout = new Workout({
       exerciseType,
       duration,
       calories,
-      userId // <-- Save the "stamp"
+      userId 
     });
 
     await newWorkout.save();
@@ -48,16 +48,16 @@ app.post('/api/log-workout', async (req, res) => {
     res.status(500).json({ message: 'Server error logging workout.', error });
   }
 });
-// --- NEW: API Route for Logging Diet ---
+// API Route for Logging Diet ---
 app.post('/api/log-diet', async (req, res) => {
   try {
-    // We now get userId from the request body
+    //get userId from the request body
     const { foodItem, calories, userId } = req.body;
 
     const newDietLog = new Diet({
       foodItem,
       calories,
-      userId // <-- Save the "stamp"
+      userId 
     });
 
     await newDietLog.save();
@@ -67,8 +67,7 @@ app.post('/api/log-diet', async (req, res) => {
     res.status(500).json({ message: 'Server error logging diet.', error });
   }
 });
-// --- NEW: API Route to GET all workouts ---
-// Find app.get('/api/get-all-workouts', ...) and REPLACE it with this:
+// API Route to GET all workouts 
 app.get('/api/my-workouts/:userId', async (req, res) => {
   try {
     const { userId } = req.params; // Get userId from URL
@@ -79,7 +78,7 @@ app.get('/api/my-workouts/:userId', async (req, res) => {
   }
 });
 
-// --- NEW: API Route to GET all diet logs ---
+// API Route to GET all diet logs 
 app.get('/api/my-diets/:userId', async (req, res) => {
   try {
     const { userId } = req.params; // Get userId from URL
@@ -89,7 +88,7 @@ app.get('/api/my-diets/:userId', async (req, res) => {
     res.status(500).json({ message: 'Server error fetching diets.', error });
   }
 });
-// --- NEW: API Route for User Registration (Simplified) ---
+// API Route for User Registration
 app.post('/api/register', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -114,7 +113,7 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-// --- NEW: API Route for User Login (Simplified) ---
+// API Route for User Login  
 app.post('/api/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -124,11 +123,11 @@ app.post('/api/login', async (req, res) => {
       return res.status(400).json({ message: "Invalid email or password." });
     }
 
-    // Success! Send back the user's ID and email
+    // Success, Send back the user's ID and email
     res.status(200).json({ 
       message: `Welcome back, ${user.email}!`,
-      userId: user._id, // <-- SEND THIS
-      userEmail: user.email // <-- AND THIS
+      userId: user._id, 
+      userEmail: user.email 
     });
 
   } catch (error) {

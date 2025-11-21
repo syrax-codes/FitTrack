@@ -2,7 +2,7 @@
 import React from 'react';
 
 function Contact() {
-  // This is a "dummy" handler. It just prevents the page from refreshing.
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     alert('Thank you for your message! (This is a demo and does not send email).');

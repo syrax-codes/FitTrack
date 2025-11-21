@@ -7,11 +7,11 @@ function LogWorkout() {
   const [calories, setCalories] = useState('');
   const [message, setMessage] = useState('');
 
-// In client/src/LogWorkout.jsx, REPLACE the handleSubmit function:
+
 const handleSubmit = async (e) => {
   e.preventDefault();
   setMessage('');
-  const userId = localStorage.getItem('userId'); // Get the logged-in user's ID
+  const userId = localStorage.getItem('userId'); 
 
   if (!userId) {
     setMessage('Error: You must be logged in to log a workout.');
@@ -26,7 +26,7 @@ const handleSubmit = async (e) => {
         exerciseType,
         duration: Number(duration),
         calories: Number(calories),
-        userId: userId // <-- Send the "stamp"
+        userId: userId 
       })
     });
 

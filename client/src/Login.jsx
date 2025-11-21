@@ -20,17 +20,15 @@ const handleSubmit = async (e) => {
     const data = await response.json();
 
     if (response.ok) {
-      // --- THIS IS THE NEW PART ---
-      // Save user info in browser memory
       localStorage.setItem('userId', data.userId);
       localStorage.setItem('userEmail', data.userEmail);
 
-      // Redirect to dashboard
+      
       window.location.href = '/dashboard'; 
 
     } else {
       setMessage(`Error: ${data.message}`);
-      localStorage.clear(); // Clear any old data on failure
+      localStorage.clear(); 
     }
   } catch (error) {
     setMessage('Network error. Could not connect.');
